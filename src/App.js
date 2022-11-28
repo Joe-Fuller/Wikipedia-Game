@@ -1,12 +1,23 @@
+import { useEffect, useState } from "react";
 import "./App.css";
+import CurrentPage from "./components/CurrentPage";
 import Header from "./components/Header";
-import RandomWikiPage from "./components/RandomWikiPage";
+import TargetPage from "./components/TargetPage";
+import getTargetPage from "./utils/getTargetPage";
 
 function App() {
+  const [targetPage, setTargetPage] = useState("No Target Page");
+  useEffect(() => {
+    getTargetPage().then((target) => {
+      setTargetPage(target);
+    });
+  }, []);
+
   return (
     <div className="App">
       <Header />
-      <RandomWikiPage />
+      <TargetPage targetPage={targetPage} />
+      <CurrentPage />
     </div>
   );
 }
