@@ -1,7 +1,7 @@
 const getPage = (title) => {
   let headers = new Headers({
-    Accept: "application/json",
-    "Content-Type": "application/json",
+    Accept: "text/html",
+    "Content-Type": "text/html",
     "API-User-Agent": "joefuller042@gmail.com",
   });
 
@@ -9,7 +9,7 @@ const getPage = (title) => {
     method: "GET",
     headers: headers,
   }).then((res) => {
-    return res.json();
+    return res.text();
   });
 };
 
