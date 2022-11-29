@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import getPage from "../utils/getPage";
 import alterHtml from "../utils/alterHtml";
 import getTargetPage from "../utils/getTargetPage";
 import getMobilePage from "../utils/getMobilePage";
@@ -12,9 +11,9 @@ const CurrentPage = () => {
   useEffect(() => {
     setIsLoading(true);
     getTargetPage().then((body) => {
-      setTitle(body);
-      getPage(body).then((body) => {
-        setHtmlString(alterHtml(body));
+      getMobilePage(body).then((body) => {
+        setTitle(body[0]);
+        setHtmlString(body[1]);
         setIsLoading(false);
       });
     });
@@ -24,9 +23,9 @@ const CurrentPage = () => {
     const element = e.target.closest("B");
     if (element && e.currentTarget.contains(element)) {
       setIsLoading(true);
-      setTitle(element.innerText);
       getMobilePage(element.innerText).then((body) => {
-        setHtmlString(body);
+        setTitle(body[0]);
+        setHtmlString(body[1]);
         setIsLoading(false);
       });
     }
@@ -40,7 +39,7 @@ const CurrentPage = () => {
       ) : (
         <div
           onClick={handleClick}
-          dangerouslySetInnerHTML={{ __html: htmlString }}
+          dangerouslySetInnerHTML={{ __html: alterHtml(htmlString) }}
         />
       )}
     </section>

@@ -8,9 +8,13 @@ const alterHtml = (htmlText) => {
 
 const alterLinks = (htmlText) => {
   //   const re = /<a.*?title="(.*?)".*?<\/a>/g;
-  const re = /<a href="\/.{0,30}?title="(.{0,30}?)".{0,30}?>.{0,30}?<\/a>/g;
+  const re =
+    /<a.{0,60}?href="\/.{0,60}?title="(.{0,60}?)".{0,60}?>.{0,60}?<\/a>/g;
 
-  const alteredText = htmlText.replaceAll(re, "<b>$1</b>");
+  const alteredText = htmlText.replaceAll(
+    re,
+    "<b class='internal-link'>$1</b>"
+  );
   return alteredText;
 };
 

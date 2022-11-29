@@ -497,3 +497,8 @@ span.texhtml span.texhtml {
 /* Put anything you mean to be a sitewide addition above the TemplateStyles
  * comment above.
  */
+
+/* Anything below here is my own css */
+/* .internal-link {
+  color: blue;
+} */
