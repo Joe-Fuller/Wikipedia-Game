@@ -1,46 +1,49 @@
 import { useEffect, useState } from "react";
-import alterLinks from "../utils/alterLinks";
-import getRandomPage from "../utils/getRandomPage";
 import getPage from "../utils/getPage";
+import alterHtml from "../utils/alterHtml";
+import getTargetPage from "../utils/getTargetPage";
 
 const CurrentPage = () => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (title) {
-      console.log(title);
-      getPage(title).then((body) => {
-        setHtmlString(body.lead.sections[0].text);
-        for (let section of body.remaining.sections) {
-          setHtmlString((h) => h + section.text);
-        }
+    setIsLoading(true);
+    getTargetPage().then((body) => {
+      setTitle(body);
+      getPage(body).then((body) => {
+        setHtmlString(alterHtml(body));
+        setIsLoading(false);
       });
-    } else {
-      getRandomPage().then((body) => {
-        setTitle(body.lead.normalizedtitle);
-        setHtmlString(body.lead.sections[0].text);
-        for (let section of body.remaining.sections) {
-          setHtmlString((h) => h + section.text);
-        }
-      });
-    }
-  }, [title]);
+    });
+  }, []);
 
   const handleClick = (e) => {
     const element = e.target.closest("B");
     if (element && e.currentTarget.contains(element)) {
+      setIsLoading(true);
       setTitle(element.innerText);
+      getPage(element.innerText).then((body) => {
+        // console.log(body);
+        // console.log(alterHtml(body));
+        setHtmlString(alterHtml(body));
+        setIsLoading(false);
+      });
     }
   };
 
   return (
     <section>
       <h2>Current Page: {title}</h2>
-      <div
-        onClick={handleClick}
-        dangerouslySetInnerHTML={{ __html: alterLinks(htmlString) }}
-      />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div
+          onClick={handleClick}
+          dangerouslySetInnerHTML={{ __html: htmlString }}
+        />
+      )}
     </section>
   );
 };
