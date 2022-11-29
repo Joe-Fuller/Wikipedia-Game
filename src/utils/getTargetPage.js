@@ -13,7 +13,7 @@ const getTargetPage = () => {
       return res.json();
     })
     .then((body) => {
-      return body.items[0].title;
+      return body.items[0].title.replace("_", " ");
     });
 };
 
