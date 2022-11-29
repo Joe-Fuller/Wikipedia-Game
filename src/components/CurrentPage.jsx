@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import getPage from "../utils/getPage";
 import alterHtml from "../utils/alterHtml";
 import getTargetPage from "../utils/getTargetPage";
+import getMobilePage from "../utils/getMobilePage";
 
 const CurrentPage = () => {
   const [title, setTitle] = useState(null);
@@ -24,10 +25,8 @@ const CurrentPage = () => {
     if (element && e.currentTarget.contains(element)) {
       setIsLoading(true);
       setTitle(element.innerText);
-      getPage(element.innerText).then((body) => {
-        // console.log(body);
-        // console.log(alterHtml(body));
-        setHtmlString(alterHtml(body));
+      getMobilePage(element.innerText).then((body) => {
+        setHtmlString(body);
         setIsLoading(false);
       });
     }
