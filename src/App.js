@@ -17,7 +17,7 @@ function App() {
     <div className="container">
       <Header className="box1" />
       <TargetPage className="box3" targetPage={targetPage} />
-      <CurrentPage className="box2" />
+      <CurrentPage className="box2" targetPage={targetPage} />
     </div>
   );
 }

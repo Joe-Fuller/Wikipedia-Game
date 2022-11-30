@@ -3,8 +3,9 @@ import alterHtml from "../utils/alterHtml";
 import getTargetPage from "../utils/getTargetPage";
 import getMobilePage from "../utils/getMobilePage";
 import "../styles/current-page.css";
+import WinScreen from "./WinScreen";
 
-const CurrentPage = ({ className }) => {
+const CurrentPage = ({ className, targetPage }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
   const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +32,10 @@ const CurrentPage = ({ className }) => {
       });
     }
   };
+
+  if (targetPage === title) {
+    return <WinScreen />;
+  }
 
   return (
     <section className={className}>
