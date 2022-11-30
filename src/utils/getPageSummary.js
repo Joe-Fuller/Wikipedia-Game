@@ -45,8 +45,9 @@ const getSentences = (paragraph) => {
       } else if (paragraph.slice(i - 2, i + 1) === "Dr.") {
         // checks for Dr. in doctors
         currSentence += char;
-      } else if (paragraph[i - 1] === "E") {
+      } else if (paragraph[i - 1] === "E" || paragraph[i - 1] === "L") {
         // checks for E. coli (maybe too broad)
+        // L is for Stephen L. Carter (this is too much)
         currSentence += char;
       } else {
         sentences.push(currSentence);
