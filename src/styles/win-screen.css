@@ -1,0 +1,9 @@
+.win-screen {
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  font-size: 40px;
+  background-color: black;
+  padding: 10px;
+  border-radius: 25px;
+}
