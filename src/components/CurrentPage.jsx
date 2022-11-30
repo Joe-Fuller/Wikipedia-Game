@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import alterHtml from "../utils/alterHtml";
 import getTargetPage from "../utils/getTargetPage";
 import getMobilePage from "../utils/getMobilePage";
+import "../styles/current-page.css";
 
-const CurrentPage = () => {
+const CurrentPage = ({ className }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ const CurrentPage = () => {
   };
 
   return (
-    <section>
+    <section className={className}>
       <h2>Current Page: {title}</h2>
       {isLoading ? (
         <div>Loading...</div>

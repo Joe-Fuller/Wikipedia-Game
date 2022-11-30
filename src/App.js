@@ -14,10 +14,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header />
-      <TargetPage targetPage={targetPage} />
-      <CurrentPage />
+    <div className="container">
+      <Header className="box1" />
+      <TargetPage className="box3" targetPage={targetPage} />
+      <CurrentPage className="box2" />
     </div>
   );
 }
