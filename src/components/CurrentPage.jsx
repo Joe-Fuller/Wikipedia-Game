@@ -5,7 +5,7 @@ import getMobilePage from "../utils/getMobilePage";
 import "../styles/current-page.css";
 import WinScreen from "./WinScreen";
 
-const CurrentPage = ({ className, targetPage }) => {
+const CurrentPage = ({ className, targetPage, getNewTarget }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +33,18 @@ const CurrentPage = ({ className, targetPage }) => {
     }
   };
 
+  const reset = () => {
+    setIsLoading(true);
+    getTargetPage().then((body) => {
+      getMobilePage(body).then((body) => {
+        setTitle(body[0]);
+        setHtmlString(body[1]);
+        setIsLoading(false);
+      });
+    });
+    getNewTarget();
+  };
+
   return (
     <section className={className}>
       <h2>Current Page: {title}</h2>
@@ -44,7 +56,7 @@ const CurrentPage = ({ className, targetPage }) => {
           dangerouslySetInnerHTML={{ __html: alterHtml(htmlString) }}
         />
       )}
-      {targetPage === title ? <WinScreen /> : <></>}
+      {targetPage === title ? <WinScreen reset={reset} /> : <></>}
     </section>
   );
 };
