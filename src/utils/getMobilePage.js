@@ -7,9 +7,11 @@ const getMobilePage = (title) => {
 
   const unwantedCategories = [
     "References",
-    "External Links",
+    "External links",
     "Sources",
     "Footnotes",
+    "Notes",
+    "Bibliography",
   ];
 
   return fetch(
