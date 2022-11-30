@@ -23,5 +23,13 @@
 .box3 {
   /* Target Page */
   grid-column: 6 / 8;
-  grid-row: 1 / 10;
+  grid-row: 1 / 6;
+  overflow-y: scroll;
+}
+
+.box4 {
+  /* History */
+  grid-column: 6 / 8;
+  grid-row: 6 / 10;
+  overflow-y: scroll;
 }

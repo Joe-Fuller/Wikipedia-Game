@@ -3,10 +3,13 @@ import "./App.css";
 import CurrentPage from "./components/CurrentPage";
 import Header from "./components/Header";
 import TargetPage from "./components/TargetPage";
+import History from "./components/History";
 import getTargetPage from "./utils/getTargetPage";
 
 function App() {
   const [targetPage, setTargetPage] = useState("No Target Page");
+  const [history, setHistory] = useState([]);
+
   useEffect(() => {
     getTargetPage().then((target) => {
       setTargetPage(target);
@@ -19,6 +22,10 @@ function App() {
     });
   };
 
+  const addToHistory = (page) => {
+    setHistory([...history, page]);
+  };
+
   return (
     <div className="container">
       <Header className="box1" />
@@ -27,7 +34,9 @@ function App() {
         className="box2"
         targetPage={targetPage}
         getNewTarget={getNewTarget}
+        addToHistory={addToHistory}
       />
+      <History className="box4" history={history} />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import getMobilePage from "../utils/getMobilePage";
 import "../styles/current-page.css";
 import WinScreen from "./WinScreen";
 
-const CurrentPage = ({ className, targetPage, getNewTarget }) => {
+const CurrentPage = ({ className, targetPage, getNewTarget, addToHistory }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +25,7 @@ const CurrentPage = ({ className, targetPage, getNewTarget }) => {
     const element = e.target.closest("B");
     if (element && e.currentTarget.contains(element)) {
       setIsLoading(true);
+      addToHistory(title);
       getMobilePage(element.innerText).then((body) => {
         setTitle(body[0]);
         setHtmlString(body[1]);
