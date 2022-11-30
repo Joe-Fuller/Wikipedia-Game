@@ -5,6 +5,7 @@ const alterHtml = (htmlText) => {
   alteredText = removeCitations(alteredText);
   alteredText = removeExpandableTables(alteredText);
   alteredText = removeBadCitationBlock(alteredText);
+  alteredText = removeBadResearchBlock(alteredText);
   return alteredText;
 };
 
@@ -47,6 +48,13 @@ const removeSectionLinks = (htmlText) => {
 
 const removeBadCitationBlock = (htmlText) => {
   const re = /<tr>.*?Question_book.*?<\/tr>/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removeBadResearchBlock = (htmlText) => {
+  const re = /<table.*?possibly contains.*?<\/table>/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
