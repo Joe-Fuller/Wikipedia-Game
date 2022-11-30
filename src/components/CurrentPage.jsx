@@ -33,10 +33,6 @@ const CurrentPage = ({ className, targetPage }) => {
     }
   };
 
-  if (targetPage === title) {
-    return <WinScreen />;
-  }
-
   return (
     <section className={className}>
       <h2>Current Page: {title}</h2>
@@ -48,6 +44,7 @@ const CurrentPage = ({ className, targetPage }) => {
           dangerouslySetInnerHTML={{ __html: alterHtml(htmlString) }}
         />
       )}
+      {targetPage === title ? <WinScreen /> : <></>}
     </section>
   );
 };
