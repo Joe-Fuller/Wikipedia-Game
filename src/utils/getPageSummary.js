@@ -36,18 +36,21 @@ const getSentences = (paragraph) => {
       if (paragraph[i + 1] !== " ") {
         // if the next character is not a space then a new sentence has not started
         currSentence += char;
-      } else if (paragraph.slice(i - 2, i + 1) === "St.") {
-        // this checks for e.g. St. Augustine's Church
+      } else if (paragraph[i - 2] === ".") {
+        // checks for e.g. F.C. or U.S.
         currSentence += char;
-      } else if (paragraph.slice(i - 3, i + 1) === "F.C.") {
-        // checks for F.C. in football clubs
+      } else if (
+        ["Dr.", "Ms.", "St."].includes(paragraph.slice(i - 2, i + 1))
+      ) {
+        // checks for Dr. , Ms. , St.
         currSentence += char;
-      } else if (paragraph.slice(i - 2, i + 1) === "Dr.") {
-        // checks for Dr. in doctors
-        currSentence += char;
-      } else if (paragraph[i - 1] === "E" || paragraph[i - 1] === "L") {
+      } else if ("CEL".includes(paragraph[i - 1])) {
         // checks for E. coli (maybe too broad)
         // L is for Stephen L. Carter (this is too much)
+        currSentence += char;
+      } else if (["Inc."].includes(paragraph.slice(i - 3, i + 1))) {
+        // checks for Inc.
+        // (not sure about this one, Inc. could be at the end)
         currSentence += char;
       } else {
         sentences.push(currSentence);
