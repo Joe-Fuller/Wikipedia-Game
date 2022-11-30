@@ -9,8 +9,11 @@ const alterHtml = (htmlText) => {
 
 const alterLinks = (htmlText) => {
   //   const re = /<a.*?title="(.*?)".*?<\/a>/g;
+  // const re =
+  //   /<a.{0,60}?href="\/[^#]{0,60}?title="(.{0,60}?)".{0,60}?>.{0,60}?<\/a>/g;
+
   const re =
-    /<a.{0,60}?href="\/[^#]{0,60}?title="(.{0,60}?)".{0,60}?>.{0,60}?<\/a>/g;
+    /<a.{0,60}?href="\/wiki\/.{0,60}?" title="(.{0,60}?)".{0,60}?>.{0,60}?<\/a>/g;
 
   const alteredText = htmlText.replaceAll(
     re,
