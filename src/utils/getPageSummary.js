@@ -13,20 +13,11 @@ const getPageSummary = (title) => {
       return res.json();
     })
     .then((body) => {
-      // getSentences(body.extract);
-      // const extract = body.extract.split(".").map((e) => {
-      //   return e.trim();
-      // });
-      // extract.pop();
-
       return getSentences(body.extract);
-
-      //return extract;
     });
 };
 
 const getSentences = (paragraph) => {
-  console.log(paragraph);
   const sentences = [];
   let currSentence = "";
 
@@ -36,17 +27,14 @@ const getSentences = (paragraph) => {
       if (paragraph[i + 1] !== " ") {
         // if the next character is not a space then a new sentence has not started
         currSentence += char;
-      } else if (paragraph[i - 2] === ".") {
+      } else if (". ".includes(paragraph[i - 2])) {
         // checks for e.g. F.C. or U.S.
+        // and also for single letter words (often a person's middle initial)
         currSentence += char;
       } else if (
         ["Dr.", "Ms.", "St."].includes(paragraph.slice(i - 2, i + 1))
       ) {
         // checks for Dr. , Ms. , St.
-        currSentence += char;
-      } else if ("CEL".includes(paragraph[i - 1])) {
-        // checks for E. coli (maybe too broad)
-        // L is for Stephen L. Carter (this is too much)
         currSentence += char;
       } else if (["Inc."].includes(paragraph.slice(i - 3, i + 1))) {
         // checks for Inc.
@@ -61,8 +49,6 @@ const getSentences = (paragraph) => {
     }
   }
   sentences.push(currSentence);
-
-  console.log(sentences);
   return sentences;
 };
 
