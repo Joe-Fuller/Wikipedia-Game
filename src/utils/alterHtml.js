@@ -38,7 +38,7 @@ const removeExpandableTables = (htmlText) => {
 
 const removeSectionLinks = (htmlText) => {
   const re =
-    /<a.{0,60}?href="\/.{0,60}?title=".{0,60}?".{0,60}?>(.{0,60}?)<\/a>/g;
+    /<a.{0,60}?href="\/.{0,100}?title=".{0,100}?".{0,60}?>(.{0,100}?)<\/a>/g;
 
   const alteredText = htmlText.replaceAll(re, "$1");
   return alteredText;
