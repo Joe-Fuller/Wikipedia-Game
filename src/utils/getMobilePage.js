@@ -25,7 +25,6 @@ const getMobilePage = (title) => {
     .then((body) => {
       let htmlText = body.lead.sections[0].text;
       for (const section of body.remaining.sections) {
-        console.log(section.line);
         if (!unwantedCategories.includes(section.line)) {
           htmlText += `<h2><span class="mw-headline">${section.line}</span></h2>`;
           htmlText += section.text;
