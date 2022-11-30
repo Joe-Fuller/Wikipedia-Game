@@ -23,5 +23,5 @@
 .box3 {
   /* Target Page */
   grid-column: 6 / 8;
-  grid-row: 1;
+  grid-row: 1 / 10;
 }
