@@ -13,7 +13,7 @@ const alterLinks = (htmlText) => {
   //   /<a.{0,60}?href="\/[^#]{0,60}?title="(.{0,60}?)".{0,60}?>.{0,60}?<\/a>/g;
 
   const re =
-    /<a.{0,60}?href="\/wiki\/.{0,80}?" title="(.{0,80}?)".{0,60}?>.{0,80}?<\/a>/g;
+    /<a.{0,60}?href="\/wiki\/.{0,100}?" title="(.{0,80}?)".{0,60}?>.{0,100}?<\/a>/g;
 
   const alteredText = htmlText.replaceAll(
     re,
