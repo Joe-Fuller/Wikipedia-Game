@@ -13,12 +13,53 @@ const getPageSummary = (title) => {
       return res.json();
     })
     .then((body) => {
-      const extract = body.extract.split(".").map((e) => {
-        return e.trim();
-      });
-      extract.pop();
-      return extract;
+      // getSentences(body.extract);
+      // const extract = body.extract.split(".").map((e) => {
+      //   return e.trim();
+      // });
+      // extract.pop();
+
+      return getSentences(body.extract);
+
+      //return extract;
     });
+};
+
+const getSentences = (paragraph) => {
+  console.log(paragraph);
+  const sentences = [];
+  let currSentence = "";
+
+  for (let i = 0; i < paragraph.length - 1; i++) {
+    const char = paragraph[i];
+    if (char === ".") {
+      if (paragraph[i + 1] !== " ") {
+        // if the next character is not a space then a new sentence has not started
+        currSentence += char;
+      } else if (paragraph.slice(i - 2, i + 1) === "St.") {
+        // this checks for e.g. St. Augustine's Church
+        currSentence += char;
+      } else if (paragraph.slice(i - 3, i + 1) === "F.C.") {
+        // checks for F.C. in football clubs
+        currSentence += char;
+      } else if (paragraph.slice(i - 2, i + 1) === "Dr.") {
+        // checks for Dr. in doctors
+        currSentence += char;
+      } else if (paragraph[i - 1] === "E") {
+        // checks for E. coli (maybe too broad)
+        currSentence += char;
+      } else {
+        sentences.push(currSentence);
+        currSentence = "";
+      }
+    } else {
+      currSentence += char;
+    }
+  }
+  sentences.push(currSentence);
+
+  console.log(sentences);
+  return sentences;
 };
 
 export default getPageSummary;
