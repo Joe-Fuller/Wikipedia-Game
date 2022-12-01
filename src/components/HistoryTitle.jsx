@@ -1,5 +1,5 @@
 const HistoryTitle = ({ className }) => {
-  return <h2 className={className}>History</h2>;
+  return <h2 className={className}>&nbsp; &nbsp; History</h2>;
 };
 
 export default HistoryTitle;
