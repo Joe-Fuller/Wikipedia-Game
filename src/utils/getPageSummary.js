@@ -27,6 +27,9 @@ const getSentences = (paragraph) => {
       if (paragraph[i + 1] !== " ") {
         // if the next character is not a space then a new sentence has not started
         currSentence += char;
+      } else if (paragraph[i + 2].toLowerCase() === paragraph[i + 2]) {
+        // if the next character (after a space) is not capitalised then a new sentence has not started
+        currSentence += char;
       } else if (". ".includes(paragraph[i - 2])) {
         // checks for e.g. F.C. or U.S.
         // and also for single letter words (often a person's middle initial)
