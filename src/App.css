@@ -2,7 +2,7 @@
   display: grid;
   height: 1000px;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
   background-color: rgb(56, 55, 55);
   color: rgb(200, 200, 200);
 }
@@ -10,27 +10,27 @@
 .box1 {
   /* Header */
   grid-column: 1 / 4;
-  grid-row: 1;
+  grid-row: 1 / 1;
 }
 
 .box2 {
   /* Current Page */
   grid-column: 1 / 6;
-  grid-row: 3 / 10;
+  grid-row: 3 / 20;
   overflow-y: scroll;
 }
 
 .box3 {
   /* Target Page */
   grid-column: 6 / 8;
-  grid-row: 2 / 6;
+  grid-row: 2 / 10;
   overflow-y: scroll;
 }
 
 .box4 {
   /* History */
   grid-column: 6 / 8;
-  grid-row: 7 / 10;
+  grid-row: 11 / 20;
   overflow-y: scroll;
 }
 
@@ -49,7 +49,7 @@
 .box7 {
   /* History Title */
   grid-column: 6 / 8;
-  grid-row: 6 / 6;
+  grid-row: 10 / 10;
 }
 
 .box8 {
