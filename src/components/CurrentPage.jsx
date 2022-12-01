@@ -24,6 +24,7 @@ const CurrentPage = ({
     setIsLoading(true);
     getTargetPage().then((body) => {
       getMobilePage(body).then((body) => {
+        addToHistory(body[0]);
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);

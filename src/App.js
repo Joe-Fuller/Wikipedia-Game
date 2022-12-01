@@ -77,7 +77,7 @@ function App() {
         getNewTarget={getNewTarget}
       />
       <HistoryTitle className="box7" />
-      <PagesVisited className="box8" pagesVisited={history.length + 1} />
+      <PagesVisited className="box8" pagesVisited={history.length} />
       <Timer className="box9" startTime={startTime} />
     </div>
   );
