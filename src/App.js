@@ -8,7 +8,7 @@ import getTargetPage from "./utils/getTargetPage";
 import CurrentPageTitle from "./components/CurrentPageTitle";
 import TargetPageTitle from "./components/TargetPageTitle";
 import HistoryTitle from "./components/HistoryTitle";
-import Stats from "./components/Stats";
+import PagesVisited from "./components/PagesVisited";
 
 function App() {
   const [targetPage, setTargetPage] = useState("No Target Page");
@@ -60,7 +60,7 @@ function App() {
       <CurrentPageTitle className="box5" currentPageTitle={currentPageTitle} />
       <TargetPageTitle className="box6" title={targetPage} />
       <HistoryTitle className="box7" />
-      <Stats className="box8" pagesVisited={history.length + 1} />
+      <PagesVisited className="box8" pagesVisited={history.length + 1} />
     </div>
   );
 }
