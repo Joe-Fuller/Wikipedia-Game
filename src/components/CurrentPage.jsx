@@ -11,6 +11,7 @@ const CurrentPage = ({
   getNewTarget,
   addToHistory,
   passedHistoryPage,
+  alterCurrentPageTitle,
 }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
@@ -21,6 +22,7 @@ const CurrentPage = ({
     getTargetPage().then((body) => {
       getMobilePage(body).then((body) => {
         setTitle(body[0]);
+        alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
         setIsLoading(false);
       });
@@ -32,6 +34,7 @@ const CurrentPage = ({
       setIsLoading(true);
       getMobilePage(passedHistoryPage).then((body) => {
         setTitle(body[0]);
+        alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
         setIsLoading(false);
       });
@@ -45,6 +48,7 @@ const CurrentPage = ({
       addToHistory(title);
       getMobilePage(element.innerText).then((body) => {
         setTitle(body[0]);
+        alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
         setIsLoading(false);
       });
@@ -57,7 +61,6 @@ const CurrentPage = ({
 
   return (
     <section className={className}>
-      <h2>Current Page: {title}</h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : (

@@ -15,7 +15,6 @@ const TargetPage = ({ className, targetPage }) => {
 
   return (
     <div className={className}>
-      <h2>Target Page: {targetPage}</h2>
       <ul>
         {extract.map((e) => {
           return <li key={e}>{e}</li>;

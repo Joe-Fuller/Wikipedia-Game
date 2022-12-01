@@ -1,7 +1,6 @@
 const History = ({ className, history, clickHistoryLink }) => {
   return (
     <div className={className}>
-      <h2>History</h2>
       <ul>
         {history.map((item) => {
           return (

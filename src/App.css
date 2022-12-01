@@ -16,20 +16,38 @@
 .box2 {
   /* Current Page */
   grid-column: 1 / 6;
-  grid-row: 2/10;
+  grid-row: 3 / 10;
   overflow-y: scroll;
 }
 
 .box3 {
   /* Target Page */
   grid-column: 6 / 8;
-  grid-row: 1 / 6;
+  grid-row: 2 / 6;
   overflow-y: scroll;
 }
 
 .box4 {
   /* History */
   grid-column: 6 / 8;
-  grid-row: 6 / 10;
+  grid-row: 7 / 10;
   overflow-y: scroll;
+}
+
+.box5 {
+  /* Current Page Title */
+  grid-column: 1 / 6;
+  grid-row: 2 / 2;
+}
+
+.box6 {
+  /* Target Page Title */
+  grid-column: 6 / 8;
+  grid-row: 1 / 1;
+}
+
+.box7 {
+  /* History Title */
+  grid-column: 6 / 8;
+  grid-row: 6 / 6;
 }
