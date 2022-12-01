@@ -1,17 +1,17 @@
 .win-screen {
-  position: fixed;
-  top: 50%;
-  left: 40%;
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  max-width: 80%;
   font-size: 40px;
-  background-color: black;
+  background-color: rgb(23, 22, 22);
   padding: 10px;
   border-radius: 25px;
+  text-align: center;
 }
 
 .win-screen-button {
-  position: fixed;
-  top: 60%;
-  left: 46.5%;
+  position: relative;
   background-color: black;
   font-size: 30px;
   color: white;

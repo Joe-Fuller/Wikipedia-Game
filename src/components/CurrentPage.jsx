@@ -9,10 +9,12 @@ const CurrentPage = ({
   className,
   targetPage,
   getNewTarget,
+  history,
   addToHistory,
   passedHistoryPage,
   alterCurrentPageTitle,
   resetStartTime,
+  resetHistory,
 }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
@@ -35,6 +37,7 @@ const CurrentPage = ({
     if (passedHistoryPage) {
       setIsLoading(true);
       getMobilePage(passedHistoryPage).then((body) => {
+        addToHistory(body[0]);
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
@@ -48,8 +51,8 @@ const CurrentPage = ({
     const element = e.target.closest("B");
     if (element && e.currentTarget.contains(element)) {
       setIsLoading(true);
-      addToHistory(title);
       getMobilePage(element.innerText).then((body) => {
+        addToHistory(body[0]);
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
@@ -61,6 +64,7 @@ const CurrentPage = ({
   const reset = () => {
     getNewTarget();
     resetStartTime();
+    resetHistory(title);
   };
 
   return (
@@ -73,7 +77,11 @@ const CurrentPage = ({
           dangerouslySetInnerHTML={{ __html: alterHtml(htmlString) }}
         />
       )}
-      {targetPage === title ? <WinScreen reset={reset} /> : <></>}
+      {targetPage === title ? (
+        <WinScreen reset={reset} history={history} />
+      ) : (
+        <></>
+      )}
     </section>
   );
 };

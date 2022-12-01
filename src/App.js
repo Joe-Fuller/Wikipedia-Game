@@ -34,6 +34,10 @@ function App() {
     setHistory([...history, page]);
   };
 
+  const resetHistory = (startPage) => {
+    setHistory([startPage]);
+  };
+
   const clickHistoryLink = (e) => {
     setPassedHistoryPage(e.target.innerText);
   };
@@ -54,7 +58,9 @@ function App() {
         className="box2"
         targetPage={targetPage}
         getNewTarget={getNewTarget}
+        history={history}
         addToHistory={addToHistory}
+        resetHistory={resetHistory}
         passedHistoryPage={passedHistoryPage}
         alterCurrentPageTitle={alterCurrentPageTitle}
         resetStartTime={resetStartTime}
