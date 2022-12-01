@@ -9,12 +9,14 @@ import CurrentPageTitle from "./components/CurrentPageTitle";
 import TargetPageTitle from "./components/TargetPageTitle";
 import HistoryTitle from "./components/HistoryTitle";
 import PagesVisited from "./components/PagesVisited";
+import Timer from "./components/Timer";
 
 function App() {
   const [targetPage, setTargetPage] = useState("No Target Page");
   const [history, setHistory] = useState([]);
   const [passedHistoryPage, setPassedHistoryPage] = useState(null);
   const [currentPageTitle, setCurrentPageTitle] = useState("No Current Page");
+  const [startTime, setStartTime] = useState(Date.now());
 
   useEffect(() => {
     getTargetPage().then((target) => {
@@ -40,6 +42,10 @@ function App() {
     setCurrentPageTitle(newTitle);
   };
 
+  const resetStartTime = () => {
+    setStartTime(Date.now());
+  };
+
   return (
     <div className="container">
       <Header className="box1" />
@@ -51,6 +57,7 @@ function App() {
         addToHistory={addToHistory}
         passedHistoryPage={passedHistoryPage}
         alterCurrentPageTitle={alterCurrentPageTitle}
+        resetStartTime={resetStartTime}
       />
       <History
         className="box4"
@@ -61,6 +68,7 @@ function App() {
       <TargetPageTitle className="box6" title={targetPage} />
       <HistoryTitle className="box7" />
       <PagesVisited className="box8" pagesVisited={history.length + 1} />
+      <Timer className="box9" startTime={startTime} />
     </div>
   );
 }

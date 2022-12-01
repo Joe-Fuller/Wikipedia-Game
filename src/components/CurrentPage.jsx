@@ -12,6 +12,7 @@ const CurrentPage = ({
   addToHistory,
   passedHistoryPage,
   alterCurrentPageTitle,
+  resetStartTime,
 }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
@@ -57,6 +58,7 @@ const CurrentPage = ({
 
   const reset = () => {
     getNewTarget();
+    resetStartTime();
   };
 
   return (
