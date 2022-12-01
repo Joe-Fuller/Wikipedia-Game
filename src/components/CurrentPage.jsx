@@ -28,6 +28,7 @@ const CurrentPage = ({
         setIsLoading(false);
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -40,6 +41,7 @@ const CurrentPage = ({
         setIsLoading(false);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [passedHistoryPage]);
 
   const handleClick = (e) => {
