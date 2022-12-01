@@ -52,14 +52,6 @@ const CurrentPage = ({
   };
 
   const reset = () => {
-    setIsLoading(true);
-    getTargetPage().then((body) => {
-      getMobilePage(body).then((body) => {
-        setTitle(body[0]);
-        setHtmlString(body[1]);
-        setIsLoading(false);
-      });
-    });
     getNewTarget();
   };
 
