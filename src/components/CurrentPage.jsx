@@ -5,7 +5,13 @@ import getMobilePage from "../utils/getMobilePage";
 import "../styles/current-page.css";
 import WinScreen from "./WinScreen";
 
-const CurrentPage = ({ className, targetPage, getNewTarget, addToHistory }) => {
+const CurrentPage = ({
+  className,
+  targetPage,
+  getNewTarget,
+  addToHistory,
+  passedHistoryPage,
+}) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +26,17 @@ const CurrentPage = ({ className, targetPage, getNewTarget, addToHistory }) => {
       });
     });
   }, []);
+
+  useEffect(() => {
+    if (passedHistoryPage) {
+      setIsLoading(true);
+      getMobilePage(passedHistoryPage).then((body) => {
+        setTitle(body[0]);
+        setHtmlString(body[1]);
+        setIsLoading(false);
+      });
+    }
+  }, [passedHistoryPage]);
 
   const handleClick = (e) => {
     const element = e.target.closest("B");

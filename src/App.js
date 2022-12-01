@@ -9,6 +9,7 @@ import getTargetPage from "./utils/getTargetPage";
 function App() {
   const [targetPage, setTargetPage] = useState("No Target Page");
   const [history, setHistory] = useState([]);
+  const [passedHistoryPage, setPassedHistoryPage] = useState(null);
 
   useEffect(() => {
     getTargetPage().then((target) => {
@@ -26,6 +27,10 @@ function App() {
     setHistory([...history, page]);
   };
 
+  const clickHistoryLink = (e) => {
+    setPassedHistoryPage(e.target.innerText);
+  };
+
   return (
     <div className="container">
       <Header className="box1" />
@@ -35,8 +40,13 @@ function App() {
         targetPage={targetPage}
         getNewTarget={getNewTarget}
         addToHistory={addToHistory}
+        passedHistoryPage={passedHistoryPage}
       />
-      <History className="box4" history={history} />
+      <History
+        className="box4"
+        history={history}
+        clickHistoryLink={clickHistoryLink}
+      />
     </div>
   );
 }
