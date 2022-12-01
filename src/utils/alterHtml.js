@@ -1,5 +1,8 @@
 const alterHtml = (htmlText) => {
   let alteredText = htmlText;
+  alteredText = removePronunciationGuides(alteredText);
+  alteredText = removePronunciationRespellingGuides(alteredText);
+  alteredText = removeFrenchPronunctiationGuide(alteredText);
   alteredText = alterLinks(alteredText);
   alteredText = removeSectionLinks(alteredText);
   alteredText = removeCitations(alteredText);
@@ -55,6 +58,27 @@ const removeBadCitationBlock = (htmlText) => {
 
 const removeBadResearchBlock = (htmlText) => {
   const re = /<table.*?possibly contains.*?<\/table>/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removePronunciationGuides = (htmlText) => {
+  const re = /\(<span.*?<a href="\/wiki\/Help:IPA.*?<\/a><\/span><\/span>/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removePronunciationRespellingGuides = (htmlText) => {
+  const re = /<a href="\/wiki\/Help:Pronunciation.*?<\/a>\)/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removeFrenchPronunctiationGuide = (htmlText) => {
+  const re = /<small .*?<\/small>.*?<a href="\/wiki\/Help:IPA.*?<\/a><\/span>/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
