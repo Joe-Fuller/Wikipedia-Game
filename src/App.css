@@ -51,3 +51,9 @@
   grid-column: 6 / 8;
   grid-row: 6 / 6;
 }
+
+.box8 {
+  /* Stats */
+  grid-column: 3 / 6;
+  grid-row: 1 / 1;
+}
