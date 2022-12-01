@@ -71,7 +71,11 @@ function App() {
         clickHistoryLink={clickHistoryLink}
       />
       <CurrentPageTitle className="box5" currentPageTitle={currentPageTitle} />
-      <TargetPageTitle className="box6" title={targetPage} />
+      <TargetPageTitle
+        className="box6"
+        title={targetPage}
+        getNewTarget={getNewTarget}
+      />
       <HistoryTitle className="box7" />
       <PagesVisited className="box8" pagesVisited={history.length + 1} />
       <Timer className="box9" startTime={startTime} />
