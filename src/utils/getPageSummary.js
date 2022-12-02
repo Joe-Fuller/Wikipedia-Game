@@ -27,7 +27,7 @@ const getSentences = (paragraph) => {
       if (paragraph[i + 1] !== " ") {
         // if the next character is not a space then a new sentence has not started
         currSentence += char;
-      } else if (paragraph[i + 2].toLowerCase() === paragraph[i + 2]) {
+      } else if (paragraph[i + 2].toUpperCase() !== paragraph[i + 2]) {
         // if the next character (after a space) is not capitalised then a new sentence has not started
         currSentence += char;
       } else if (". ".includes(paragraph[i - 2])) {
