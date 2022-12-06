@@ -52,7 +52,7 @@ const CurrentPage = ({
     const element = e.target.closest("B");
     if (element && e.currentTarget.contains(element)) {
       setIsLoading(true);
-      getMobilePage(element.innerText).then((body) => {
+      getMobilePage(element.attributes.tag.nodeValue).then((body) => {
         addToHistory(body[0]);
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);

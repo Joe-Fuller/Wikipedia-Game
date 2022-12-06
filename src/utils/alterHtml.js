@@ -22,11 +22,11 @@ const alterLinks = (htmlText) => {
   // const re =
   //   /<a.{0,60}?href="\/wiki\/.{0,100}?" title="(.{0,80}?)".{0,60}?>[\s\S]{0,100}?<\/a>/g;
 
-  const re = /<a\s+[^>]*href=["']([^"']*)["'][^>]*>(.*?)<\/a>/gi;
+  const re = /<a\s+[^>]*href=["']\/wiki\/([^"']*)["'][^>]*>(.*?)<\/a>/gi;
 
   const alteredText = htmlText.replaceAll(
     re,
-    "<b class='internal-link'>$2</b>"
+    "<b class='internal-link' tag='$1'>$2</b>"
   );
   return alteredText;
 };
