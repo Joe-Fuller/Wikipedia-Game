@@ -8,6 +8,7 @@
   padding: 10px;
   border-radius: 25px;
   text-align: center;
+  border: 5px solid white;
 }
 
 .win-screen-button {
