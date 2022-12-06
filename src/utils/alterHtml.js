@@ -8,7 +8,7 @@ const alterHtml = (htmlText) => {
   alteredText = removeExternalLinks(alteredText);
   alteredText = removeCitations(alteredText);
   alteredText = alterLinks(alteredText);
-  alteredText = removeSectionLinks(alteredText);
+  // alteredText = removeSectionLinks(alteredText);
   alteredText = removeExpandableTables(alteredText);
   alteredText = removeBadCitationBlock(alteredText);
   alteredText = removeBadResearchBlock(alteredText);
@@ -47,13 +47,13 @@ const removeExpandableTables = (htmlText) => {
   return alteredText;
 };
 
-const removeSectionLinks = (htmlText) => {
-  const re =
-    /<a.{0,60}?href="\/.{0,100}?title=".{0,100}?".{0,60}?>(.{0,100}?)<\/a>/g;
+// const removeSectionLinks = (htmlText) => {
+//   const re =
+//     /<a.{0,60}?href="\/.{0,100}?title=".{0,100}?".{0,60}?>(.{0,100}?)<\/a>/g;
 
-  const alteredText = htmlText.replaceAll(re, "$1");
-  return alteredText;
-};
+//   const alteredText = htmlText.replaceAll(re, "$1");
+//   return alteredText;
+// };
 
 const removeBadCitationBlock = (htmlText) => {
   const re = /<tr>.*?Question_book.*?<\/tr>/g;

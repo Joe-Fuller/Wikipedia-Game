@@ -15,6 +15,9 @@ const CurrentPage = ({
   alterCurrentPageTitle,
   resetStartTime,
   resetHistory,
+  alterSections,
+  executeScroll,
+  ref,
 }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
@@ -28,6 +31,7 @@ const CurrentPage = ({
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
+        alterSections(body[2]);
         setIsLoading(false);
       });
     });
@@ -42,6 +46,7 @@ const CurrentPage = ({
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
+        alterSections(body[2]);
         setIsLoading(false);
       });
     }
@@ -57,6 +62,7 @@ const CurrentPage = ({
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);
         setHtmlString(body[1]);
+        alterSections(body[2]);
         setIsLoading(false);
       });
     }

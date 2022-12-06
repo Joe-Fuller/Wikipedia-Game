@@ -26,14 +26,19 @@ const getMobilePage = (title) => {
       return res.json();
     })
     .then((body) => {
+      const sections = ["Summary"];
       let htmlText = body.lead.sections[0].text;
       for (const section of body.remaining.sections) {
         if (!unwantedCategories.includes(section.line)) {
-          htmlText += `<h2><span class="mw-headline">${section.line}</span></h2>`;
+          htmlText += `<h2><span id=${section.line.replaceAll(
+            " ",
+            "_"
+          )} class="mw-headline">${section.line}</span></h2>`;
           htmlText += section.text;
+          sections.push(section.line);
         }
       }
-      return [body.lead.normalizedtitle, htmlText];
+      return [body.lead.normalizedtitle, htmlText, sections];
     });
 };
 

@@ -11,6 +11,7 @@ import HistoryTitle from "./components/HistoryTitle";
 import PagesVisited from "./components/PagesVisited";
 import Timer from "./components/Timer";
 import InfoBox from "./components/InfoBox";
+import Sections from "./components/Sections";
 
 function App() {
   const [targetPage, setTargetPage] = useState("No Target Page");
@@ -18,6 +19,7 @@ function App() {
   const [passedHistoryPage, setPassedHistoryPage] = useState(null);
   const [currentPageTitle, setCurrentPageTitle] = useState("No Current Page");
   const [startTime, setStartTime] = useState(Date.now());
+  const [sections, setSections] = useState([]);
 
   useEffect(() => {
     getTargetPage().then((target) => {
@@ -51,6 +53,10 @@ function App() {
     setStartTime(Date.now());
   };
 
+  const alterSections = (newSections) => {
+    setSections(newSections);
+  };
+
   return (
     <div className="container">
       <InfoBox />
@@ -66,6 +72,7 @@ function App() {
         passedHistoryPage={passedHistoryPage}
         alterCurrentPageTitle={alterCurrentPageTitle}
         resetStartTime={resetStartTime}
+        alterSections={alterSections}
       />
       <History
         className="box4"
@@ -81,6 +88,7 @@ function App() {
       <HistoryTitle className="box7" />
       <PagesVisited className="box8" pagesVisited={history.length} />
       <Timer className="box9" startTime={startTime} />
+      <Sections className="box10" sections={sections} />
     </div>
   );
 }
