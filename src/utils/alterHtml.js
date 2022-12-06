@@ -6,9 +6,9 @@ const alterHtml = (htmlText) => {
   alteredText = removeCoordLinks(alteredText);
   alteredText = removeCoordLinks2(alteredText);
   alteredText = removeExternalLinks(alteredText);
+  alteredText = removeCitations(alteredText);
   alteredText = alterLinks(alteredText);
   alteredText = removeSectionLinks(alteredText);
-  alteredText = removeCitations(alteredText);
   alteredText = removeExpandableTables(alteredText);
   alteredText = removeBadCitationBlock(alteredText);
   alteredText = removeBadResearchBlock(alteredText);
@@ -19,19 +19,22 @@ const alterLinks = (htmlText) => {
   //   const re = /<a.*?title="(.*?)".*?<\/a>/g;
   // const re =
   //   /<a.{0,60}?href="\/[^#]{0,60}?title="(.{0,60}?)".{0,60}?>.{0,60}?<\/a>/g;
+  // const re =
+  //   /<a.{0,60}?href="\/wiki\/.{0,100}?" title="(.{0,80}?)".{0,60}?>[\s\S]{0,100}?<\/a>/g;
 
-  const re =
-    /<a.{0,60}?href="\/wiki\/.{0,100}?" title="(.{0,80}?)".{0,60}?>[\s\S]{0,100}?<\/a>/g;
+  const re = /<a\s+[^>]*href=["']([^"']*)["'][^>]*>(.*?)<\/a>/gi;
 
   const alteredText = htmlText.replaceAll(
     re,
-    "<b class='internal-link'>$1</b>"
+    "<b class='internal-link'>$2</b>"
   );
   return alteredText;
 };
 
 const removeCitations = (htmlText) => {
-  const re = /<span class="mw-ref reference".*?><\/span>/g;
+  // const re = /<span class="mw-ref reference".*?><\/span>/g;
+
+  const re = /\[\d+\]/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
