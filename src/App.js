@@ -10,6 +10,7 @@ import TargetPageTitle from "./components/TargetPageTitle";
 import HistoryTitle from "./components/HistoryTitle";
 import PagesVisited from "./components/PagesVisited";
 import Timer from "./components/Timer";
+import InfoBox from "./components/InfoBox";
 
 function App() {
   const [targetPage, setTargetPage] = useState("No Target Page");
@@ -52,6 +53,7 @@ function App() {
 
   return (
     <div className="container">
+      <InfoBox />
       <Header className="box1" />
       <TargetPage className="box3" targetPage={targetPage} />
       <CurrentPage
