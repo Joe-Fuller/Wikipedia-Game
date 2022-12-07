@@ -27,15 +27,27 @@ const getMobilePage = (title) => {
     })
     .then((body) => {
       const sections = ["Summary"];
-      let htmlText = body.lead.sections[0].text;
+      let htmlText =
+        "<h2><span id=Summary class='mw-headline'>Summary</span></h2>" +
+        body.lead.sections[0].text;
       for (const section of body.remaining.sections) {
         if (!unwantedCategories.includes(section.line)) {
-          htmlText += `<h2><span id=${section.line.replaceAll(
-            " ",
-            "_"
-          )} class="mw-headline">${section.line}</span></h2>`;
+          const re = /(?<=title=")([^"])+(?=")/g;
+          const sectionHeading = section.line.match(re);
+          if (sectionHeading) {
+            htmlText += `<h2><span id=${sectionHeading[0].replaceAll(
+              " ",
+              "_"
+            )} class="mw-headline">${sectionHeading[0]}</span></h2>`;
+            sections.push(sectionHeading[0]);
+          } else {
+            htmlText += `<h2><span id=${section.line.replaceAll(
+              " ",
+              "_"
+            )} class="mw-headline">${section.line}</span></h2>`;
+            sections.push(section.line);
+          }
           htmlText += section.text;
-          sections.push(section.line);
         }
       }
       return [body.lead.normalizedtitle, htmlText, sections];

@@ -26,7 +26,7 @@ const CurrentPage = ({
   useEffect(() => {
     setIsLoading(true);
     getTargetPage().then((body) => {
-      getMobilePage(body).then((body) => {
+      getMobilePage("The Bachelorette (American season 19)").then((body) => {
         addToHistory(body[0]);
         setTitle(body[0]);
         alterCurrentPageTitle(body[0]);
