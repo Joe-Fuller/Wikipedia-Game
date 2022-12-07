@@ -41,11 +41,12 @@ const getMobilePage = (title) => {
             )} class="mw-headline">${sectionHeading[0]}</span></h2>`;
             sections.push(sectionHeading[0]);
           } else {
-            htmlText += `<h2><span id=${section.line.replaceAll(
-              " ",
-              "_"
-            )} class="mw-headline">${section.line}</span></h2>`;
-            sections.push(section.line);
+            htmlText += `<h2><span id=${section.line
+              .replaceAll(" ", "_")
+              .replaceAll('"', "")} class="mw-headline">${
+              section.line
+            }</span></h2>`;
+            sections.push(section.line.replaceAll('"', ""));
           }
           htmlText += section.text;
         }
