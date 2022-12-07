@@ -2,9 +2,9 @@ const History = ({ className, history, clickHistoryLink }) => {
   return (
     <div className={className}>
       <ul>
-        {history.map((item) => {
+        {history.map((item, i) => {
           return (
-            <li key={item} onClick={clickHistoryLink}>
+            <li key={i} id={i} onClick={clickHistoryLink}>
               {item}
             </li>
           );

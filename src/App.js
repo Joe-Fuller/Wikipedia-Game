@@ -43,6 +43,7 @@ function App() {
 
   const clickHistoryLink = (e) => {
     setPassedHistoryPage(e.target.innerText);
+    setHistory(history.slice(0, parseInt(e.target.id)));
   };
 
   const alterCurrentPageTitle = (newTitle) => {
