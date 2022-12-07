@@ -16,8 +16,6 @@ const CurrentPage = ({
   resetStartTime,
   resetHistory,
   alterSections,
-  executeScroll,
-  ref,
 }) => {
   const [title, setTitle] = useState(null);
   const [htmlString, setHtmlString] = useState("No HTML String");
