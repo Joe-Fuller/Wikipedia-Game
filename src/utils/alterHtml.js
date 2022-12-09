@@ -112,7 +112,7 @@ const removePronunciationGuideAudio = (htmlText) => {
 };
 
 const removePronunciationGuideListen = (htmlText) => {
-  const re = /<a href=".{0,100}?\.wav.*?<\/a>/g;
+  const re = /<a href=".{0,100}?\.[wav|ogg].*?<\/a>/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
