@@ -9,6 +9,7 @@ const alterHtml = (htmlText) => {
   alteredText = removeCoordLinks(alteredText);
   alteredText = removeCoordLinks2(alteredText);
   alteredText = removeExternalLinks(alteredText);
+  alteredText = removeWikisourceLinks(alteredText);
   alteredText = removeCitations(alteredText);
   alteredText = alterLinks(alteredText);
   // alteredText = removeSectionLinks(alteredText);
@@ -141,6 +142,13 @@ const removeCoordLinks2 = (htmlText) => {
 
 const removeExternalLinks = (htmlText) => {
   const re = /<a rel="mw:ExtLink.*?>(.*?)<\/a>/g;
+
+  const alteredText = htmlText.replaceAll(re, "$1");
+  return alteredText;
+};
+
+const removeWikisourceLinks = (htmlText) => {
+  const re = /<a href="https:\/\/en.wikisource.org.*?>(.*?)<\/a>/g;
 
   const alteredText = htmlText.replaceAll(re, "$1");
   return alteredText;
