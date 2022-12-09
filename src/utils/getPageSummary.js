@@ -35,11 +35,11 @@ const getSentences = (paragraph) => {
         // and also for single letter words (often a person's middle initial)
         currSentence += char;
       } else if (
-        ["Dr.", "Ms.", "St."].includes(paragraph.slice(i - 2, i + 1))
+        ["Dr.", "Ms.", "St.", "Mr."].includes(paragraph.slice(i - 2, i + 1))
       ) {
         // checks for Dr. , Ms. , St.
         currSentence += char;
-      } else if (["Inc."].includes(paragraph.slice(i - 3, i + 1))) {
+      } else if (["Inc.", "Mrs."].includes(paragraph.slice(i - 3, i + 1))) {
         // checks for Inc.
         // (not sure about this one, Inc. could be at the end)
         currSentence += char;
