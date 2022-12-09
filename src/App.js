@@ -62,7 +62,11 @@ function App() {
     <div className="container">
       <InfoBox />
       <Header className="box1" />
-      <TargetPage className="box3" targetPage={targetPage} />
+      <TargetPage
+        className="box3"
+        targetPage={targetPage}
+        getNewTarget={getNewTarget}
+      />
       <CurrentPage
         className="box2"
         targetPage={targetPage}
