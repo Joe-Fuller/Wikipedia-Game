@@ -1,8 +1,8 @@
 const alterHtml = (htmlText) => {
   let alteredText = htmlText;
-  alteredText = removePronunciationGuides(alteredText);
-  alteredText = removePronunciationRespellingGuides(alteredText);
-  alteredText = removeFrenchPronunctiationGuide(alteredText);
+  // alteredText = removePronunciationGuides(alteredText);
+  // alteredText = removePronunciationRespellingGuides(alteredText);
+  // alteredText = removeFrenchPronunctiationGuide(alteredText);
   alteredText = removeCoordLinks(alteredText);
   alteredText = removeCoordLinks2(alteredText);
   alteredText = removeExternalLinks(alteredText);
@@ -12,6 +12,7 @@ const alterHtml = (htmlText) => {
   alteredText = removeExpandableTables(alteredText);
   alteredText = removeBadCitationBlock(alteredText);
   alteredText = removeBadResearchBlock(alteredText);
+  alteredText = removeMultipleIssuesBlock(alteredText);
   return alteredText;
 };
 
@@ -64,6 +65,14 @@ const removeBadCitationBlock = (htmlText) => {
 
 const removeBadResearchBlock = (htmlText) => {
   const re = /<table.*?possibly contains.*?<\/table>/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removeMultipleIssuesBlock = (htmlText) => {
+  const re =
+    /<table class="box-Multiple_issues[\s\S]*?<\/div><\/div><\/td><\/tr><\/tbody><\/table>/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
