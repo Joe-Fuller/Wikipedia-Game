@@ -43,10 +43,13 @@ const getMobilePage = (title) => {
           } else {
             htmlText += `<h2><span id=${section.line
               .replaceAll(" ", "_")
-              .replaceAll('"', "")} class="mw-headline">${
+              .replaceAll('"', "")
+              .replaceAll(/<.*?>/g, "")} class="mw-headline">${
               section.line
             }</span></h2>`;
-            sections.push(section.line.replaceAll('"', ""));
+            sections.push(
+              section.line.replaceAll('"', "").replaceAll(/<.*?>/g, "")
+            );
           }
           htmlText += section.text;
         }
