@@ -17,6 +17,7 @@ const alterHtml = (htmlText) => {
   alteredText = removeBadCitationBlock(alteredText);
   alteredText = removeBadResearchBlock(alteredText);
   alteredText = removeMultipleIssuesBlock(alteredText);
+  alteredText = removeLacksCitationsBlock(alteredText);
   return alteredText;
 };
 
@@ -77,6 +78,13 @@ const removeBadResearchBlock = (htmlText) => {
 const removeMultipleIssuesBlock = (htmlText) => {
   const re =
     /<table class="box-Multiple_issues[\s\S]*?<\/div><\/div><\/td><\/tr><\/tbody><\/table>/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removeLacksCitationsBlock = (htmlText) => {
+  const re = /<table class="box-More_footnotes.*?<\/table>/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
