@@ -3,6 +3,9 @@ const alterHtml = (htmlText) => {
   // alteredText = removePronunciationGuides(alteredText);
   // alteredText = removePronunciationRespellingGuides(alteredText);
   // alteredText = removeFrenchPronunctiationGuide(alteredText);
+  alteredText = removePronunciationGuideLinks(alteredText);
+  alteredText = removePronunciationGuideAudio(alteredText);
+  alteredText = removePronunciationGuideListen(alteredText);
   alteredText = removeCoordLinks(alteredText);
   alteredText = removeCoordLinks2(alteredText);
   alteredText = removeExternalLinks(alteredText);
@@ -34,8 +37,8 @@ const alterLinks = (htmlText) => {
 
 const removeCitations = (htmlText) => {
   // const re = /<span class="mw-ref reference".*?><\/span>/g;
-
-  const re = /\[\d+\]/g;
+  // const re = /\[\d+\]/g;
+  const re = /<span class="mw-ref reference".*?<\/a><\/span>/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
@@ -80,6 +83,27 @@ const removeMultipleIssuesBlock = (htmlText) => {
 
 const removePronunciationGuides = (htmlText) => {
   const re = /\(<span.*?<a href="\/wiki\/Help:IPA.*?<\/a><\/span><\/span>/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removePronunciationGuideLinks = (htmlText) => {
+  const re = /<a href="\/wiki\/Help:IPA.*?>(.*?)<\/a>/g;
+
+  const alteredText = htmlText.replaceAll(re, "$1");
+  return alteredText;
+};
+
+const removePronunciationGuideAudio = (htmlText) => {
+  const re = /\(*<span class="unicode haudio">.*?<\/span>\)*/g;
+
+  const alteredText = htmlText.replaceAll(re, "");
+  return alteredText;
+};
+
+const removePronunciationGuideListen = (htmlText) => {
+  const re = /<a href=".{0,100}?\.wav.*?<\/a>/g;
 
   const alteredText = htmlText.replaceAll(re, "");
   return alteredText;
