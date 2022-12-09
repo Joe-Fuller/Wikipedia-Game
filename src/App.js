@@ -12,9 +12,11 @@ import PagesVisited from "./components/PagesVisited";
 import Timer from "./components/Timer";
 import InfoBox from "./components/InfoBox";
 import Sections from "./components/Sections";
+import getPageSummary from "./utils/getPageSummary";
 
 function App() {
   const [targetPage, setTargetPage] = useState("No Target Page");
+  const [targetPageSummary, setTargetPageSummary] = useState([]);
   const [history, setHistory] = useState([]);
   const [passedHistoryPage, setPassedHistoryPage] = useState(null);
   const [currentPageTitle, setCurrentPageTitle] = useState("No Current Page");
@@ -22,15 +24,38 @@ function App() {
   const [sections, setSections] = useState([]);
 
   useEffect(() => {
-    getTargetPage().then((target) => {
-      setTargetPage(target);
-    });
+    getTargetPage()
+      .then((target) => {
+        return Promise.all([target, getPageSummary(target)]);
+      })
+      .then((res) => {
+        if (res[1].length < 3) {
+          setTargetPage("Searching...");
+          setTargetPageSummary([]);
+          getNewTarget();
+        } else {
+          setTargetPage(res[0]);
+          setTargetPageSummary(res[1]);
+        }
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getNewTarget = () => {
-    getTargetPage().then((target) => {
-      setTargetPage(target);
-    });
+    getTargetPage()
+      .then((target) => {
+        return Promise.all([target, getPageSummary(target)]);
+      })
+      .then((res) => {
+        if (res[1].length < 3) {
+          setTargetPage("Searching...");
+          setTargetPageSummary([]);
+          getNewTarget();
+        } else {
+          setTargetPage(res[0]);
+          setTargetPageSummary(res[1]);
+        }
+      });
   };
 
   const addToHistory = (page) => {
@@ -62,11 +87,7 @@ function App() {
     <div className="container">
       <InfoBox />
       <Header className="box1" />
-      <TargetPage
-        className="box3"
-        targetPage={targetPage}
-        getNewTarget={getNewTarget}
-      />
+      <TargetPage className="box3" targetPageSummary={targetPageSummary} />
       <CurrentPage
         className="box2"
         targetPage={targetPage}
